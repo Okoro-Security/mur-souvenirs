@@ -16,7 +16,7 @@ import os
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-dev-key-change-me")
 
-DEBUG = True
+DEBUG = os.environ.get("DJANGO_DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
@@ -201,6 +201,7 @@ REST_FRAMEWORK = {
 
 AXES_FAILURE_LIMIT = 5
 AXES_COOLOFF_TIME = 1
+
 
 
 
