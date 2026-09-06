@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mur de nos souvenirs</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}?v=2"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         NAVIGATION
+    ====================================================== -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🧡 Mur de nos souvenirs
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Accueil
+            </a>
+
+            <a href="/publication/">
+                Publier
+            </a>
+
+            <a href="/profil/">
+                Profil
+            </a>
+
+            <a href="/login/">
+                Connexion
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTENU PRINCIPAL
+    ====================================================== -->
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>
+                Mur de nos souvenirs
+            </h1>
+
+            <p>
+                Nos années ensemble, nos souvenirs,
+                nos photos et nos moments inoubliables.
+            </p>
+
+            <a
+                href="/publication/"
+                class="btn"
+            >
+                + Ajouter un souvenir
+            </a>
+
+        </section>
+
+
+        <!-- =================================================
+             PUBLICATIONS
+        ================================================== -->
+
+        <section class="publications-section">
+
+            <h2>
+                Nos souvenirs
+            </h2>
+
+            <div
+                id="publications-container"
+                class="publications-container"
+            >
+
+                <p id="chargement">
+                    Chargement des souvenirs...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            © 2026 - Mur de nos souvenirs
+        </p>
+
+        <p>
+            Notre promotion, nos souvenirs ❤️
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <script src="{% static 'js/publications.js' %}"></script>
+
+</body>
+
+</html>

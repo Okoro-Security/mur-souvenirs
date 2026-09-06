@@ -1,0 +1,425 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.navbar nav {
+    display: flex;
+    gap: 22px;
+}
+
+
+.navbar nav a {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+
+.navbar nav a:hover {
+    color: #f97316;
+}
+
+
+/* =========================================================
+   CONTENEUR
+========================================================= */
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+    margin-bottom: 35px;
+}
+
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+
+.hero p {
+    max-width: 650px;
+    margin: 0 auto 25px;
+    color: #666;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   BOUTONS
+========================================================= */
+
+.btn {
+    display: inline-block;
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+.btn:hover {
+    background: #ea580c;
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PUBLICATIONS
+========================================================= */
+
+.publications-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+
+.publications-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+.publication-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+
+.publication-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+
+.publication-header strong {
+    font-size: 18px;
+}
+
+
+.publication-header span {
+    color: #777;
+    font-size: 14px;
+}
+
+
+.publication-type {
+    display: inline-block;
+    background: #fff7ed;
+    color: #c2410c;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+
+.publication-text {
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+
+.publication-image {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 10px 0 18px;
+}
+
+
+.publication-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    border-top: 1px solid #eeeeee;
+    padding-top: 15px;
+}
+
+
+.publication-actions button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 0;
+}
+
+
+/* =========================================================
+   FORMULAIRES
+========================================================= */
+
+.form-section {
+    background: #ffffff;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+
+.form-section h1 {
+    margin-bottom: 10px;
+}
+
+
+.form-section > p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-section label {
+    margin: 14px 0 7px;
+    font-weight: bold;
+}
+
+
+.form-section input,
+.form-section select,
+.form-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 15px;
+    outline: none;
+}
+
+
+.form-section input:focus,
+.form-section select:focus,
+.form-section textarea:focus {
+    border-color: #f97316;
+}
+
+
+.form-section button {
+    margin-top: 22px;
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+#login-message,
+#register-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    text-align: center;
+    padding: 35px 20px;
+    color: #777;
+    margin-top: 50px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+
+    .navbar nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
+    }
+
+
+    .hero h1 {
+        font-size: 30px;
+    }
+
+
+    .hero p {
+        font-size: 16px;
+    }
+
+
+    .container {
+        width: 94%;
+        margin-top: 25px;
+    }
+
+
+    .form-section {
+        padding: 25px 20px;
+    }
+
+}
+/* =========================================================
+   PROFIL
+========================================================= */
+
+#profil-container {
+    margin-top: 25px;
+}
+
+
+/* Formulaire du profil */
+
+#profil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+#profil-form label {
+    margin-top: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+#profil-form input,
+#profil-form select,
+#profil-form textarea {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: 0.2s;
+}
+
+
+#profil-form input:focus,
+#profil-form select:focus,
+#profil-form textarea:focus {
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.10);
+}
+
+
+#profil-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+
+/* Photo de profil */
+
+#profil-container img {
+    display: block;
+    margin: 0 auto 20px;
+}
+
+
+/* Bouton enregistrer */
+
+#profil-form .btn {
+    margin-top: 20px;
+    width: 100%;
+}
+
+
+/* Message de modification */
+
+#profil-message {
+    text-align: center;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    #profil-form input,
+    #profil-form select,
+    #profil-form textarea {
+        font-size: 16px;
+    }
+
+}

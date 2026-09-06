@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Connexion - Mur de nos souvenirs</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🧡 Mur de nos souvenirs
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Accueil
+            </a>
+
+            <a href="/register/">
+                Inscription
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="form-section">
+
+            <h1>
+                Connexion
+            </h1>
+
+            <p>
+                Connecte-toi pour retrouver notre mur de souvenirs.
+            </p>
+
+
+            <form id="login-form">
+
+                <label for="username">
+                    Nom d'utilisateur
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                >
+
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Se connecter
+                </button>
+
+            </form>
+
+
+            <p id="login-message"></p>
+
+
+            <p>
+                Pas encore de compte ?
+
+                <a href="/register/">
+                    Créer un compte
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 - Mur de nos souvenirs
+        </p>
+
+    </footer>
+
+
+    <script src="{% static 'js/auth.js' %}"></script>
+
+</body>
+
+</html>

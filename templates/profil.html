@@ -1,0 +1,623 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Mon profil</title>
+
+<link
+    rel="stylesheet"
+    href="{% static 'css/style.css' %}?v=5"
+>
+```
+
+</head>
+
+<body>
+
+```
+<header class="navbar">
+
+    <div class="logo">
+        🧡 Mur de nos souvenirs
+    </div>
+
+    <nav>
+
+        <a href="/">Accueil</a>
+        <a href="/publication/">Publier</a>
+        <a href="/publications/">Souvenirs</a>
+        <a href="/profil/">Profil</a>
+        <a href="/login/">Connexion</a>
+
+    </nav>
+
+</header>
+
+
+<main class="container">
+
+    <section class="form-section">
+
+        <h1>👤 Mon profil</h1>
+
+        <p>
+            Consulte tes informations et modifie ton profil.
+        </p>
+
+
+        <div id="profil-container">
+
+            <p>
+                Chargement du profil...
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <p>
+        © 2026 Mur de nos souvenirs
+    </p>
+
+</footer>
+
+
+<script>
+
+    function obtenirCookie(nom) {
+
+        let cookieValue = null;
+
+        if (document.cookie &&
+            document.cookie !== "") {
+
+            const cookies =
+                document.cookie.split(";");
+
+            for (let cookie of cookies) {
+
+                cookie = cookie.trim();
+
+                if (cookie.startsWith(nom + "=")) {
+
+                    cookieValue =
+                        decodeURIComponent(
+                            cookie.substring(
+                                nom.length + 1
+                            )
+                        );
+
+                    break;
+                }
+            }
+        }
+
+        return cookieValue;
+    }
+
+
+    async function chargerProfil() {
+
+        const container =
+            document.getElementById(
+                "profil-container"
+            );
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/profil/",
+                    {
+                        method: "GET",
+
+                        credentials:
+                            "same-origin",
+
+                        headers: {
+                            "Accept":
+                                "application/json"
+                        }
+                    }
+                );
+
+
+            if (response.status === 401 ||
+                response.status === 403) {
+
+                container.innerHTML = `
+                    <p>
+                        ❌ Tu dois être connecté
+                        pour consulter ton profil.
+                    </p>
+                `;
+
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Erreur HTTP " + response.status
+                );
+
+            }
+
+
+            const profil =
+                await response.json();
+
+
+            afficherProfil(profil);
+
+
+        } catch (error) {
+
+            console.error(
+                "Erreur chargement profil :",
+                error
+            );
+
+
+            container.innerHTML = `
+                <p>
+                    ❌ Impossible de charger le profil.
+                </p>
+            `;
+
+        }
+
+    }
+
+
+    function afficherProfil(profil) {
+
+        const container =
+            document.getElementById(
+                "profil-container"
+            );
+
+
+        let photoHTML = "";
+
+
+        if (profil.photo) {
+
+            photoHTML = `
+                <div class="profil-photo-container">
+
+                    <img
+                        src="${profil.photo}"
+                        alt="Photo de profil"
+                        class="profil-photo"
+                    >
+
+                </div>
+            `;
+
+        } else {
+
+            photoHTML = `
+                <div class="profil-photo-container">
+
+                    <div class="profil-photo-vide">
+                        👤
+                    </div>
+
+                </div>
+            `;
+
+        }
+
+
+        const utilisateur =
+            profil.user || {};
+
+
+        container.innerHTML = `
+
+            <div class="profil-card">
+
+                ${photoHTML}
+
+
+                <div class="profil-informations">
+
+                    <h2>
+                        ${utilisateur.first_name || ""}
+                        ${utilisateur.last_name || ""}
+                    </h2>
+
+
+                    <p class="profil-username">
+                        @${utilisateur.username || ""}
+                    </p>
+
+
+                    <div class="profil-info">
+
+                        <strong>
+                            🎓 Niveau
+                        </strong>
+
+                        <span>
+                            ${profil.niveau || "Non renseigné"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="profil-info">
+
+                        <strong>
+                            📅 Promotion
+                        </strong>
+
+                        <span>
+                            ${profil.promotion || "Non renseignée"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="profil-info">
+
+                        <strong>
+                            📧 Email
+                        </strong>
+
+                        <span>
+                            ${utilisateur.email || "Non renseigné"}
+                        </span>
+
+                    </div>
+
+
+                    <div class="profil-bio">
+
+                        <strong>
+                            📝 Bio
+                        </strong>
+
+                        <p>
+                            ${profil.bio || "Aucune bio pour le moment."}
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="btn"
+                    id="modifier-profil-button"
+                >
+                    ✏️ Modifier mon profil
+                </button>
+
+
+            </div>
+
+
+            <div
+                id="modification-profil"
+                class="modification-profil"
+                style="display:none;"
+            >
+
+                <h2>
+                    ✏️ Modifier mon profil
+                </h2>
+
+
+                <form
+                    id="profil-form"
+                    enctype="multipart/form-data"
+                >
+
+
+                    <label for="niveau">
+                        Niveau
+                    </label>
+
+
+                    <select
+                        id="niveau"
+                        name="niveau"
+                        required
+                    >
+
+                        <option
+                            value="L1"
+                            ${profil.niveau === "L1"
+                                ? "selected"
+                                : ""}
+                        >
+                            Licence 1
+                        </option>
+
+
+                        <option
+                            value="L2"
+                            ${profil.niveau === "L2"
+                                ? "selected"
+                                : ""}
+                        >
+                            Licence 2
+                        </option>
+
+
+                        <option
+                            value="L3"
+                            ${profil.niveau === "L3"
+                                ? "selected"
+                                : ""}
+                        >
+                            Licence 3
+                        </option>
+
+                    </select>
+
+
+                    <label for="promotion">
+                        Promotion
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="promotion"
+                        name="promotion"
+                        value="${profil.promotion || ""}"
+                        maxlength="50"
+                        required
+                    >
+
+
+                    <label for="bio">
+                        Bio
+                    </label>
+
+
+                    <textarea
+                        id="bio"
+                        name="bio"
+                        rows="5"
+                        placeholder="Écris quelques mots sur toi..."
+                    >${profil.bio || ""}</textarea>
+
+
+                    <label for="photo">
+                        Photo de profil
+                    </label>
+
+
+                    <input
+                        type="file"
+                        id="photo"
+                        name="photo"
+                        accept="image/*"
+                    >
+
+
+                    <button
+                        type="submit"
+                        class="btn"
+                    >
+                        💾 Enregistrer
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-annuler"
+                        id="annuler-modification"
+                    >
+                        ❌ Annuler
+                    </button>
+
+
+                </form>
+
+
+                <p
+                    id="profil-message"
+                ></p>
+
+            </div>
+
+        `;
+
+
+        document
+            .getElementById(
+                "modifier-profil-button"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    document.getElementById(
+                        "modification-profil"
+                    ).style.display = "block";
+
+                    document.getElementById(
+                        "modifier-profil-button"
+                    ).style.display = "none";
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "annuler-modification"
+            )
+            .addEventListener(
+                "click",
+                function() {
+
+                    document.getElementById(
+                        "modification-profil"
+                    ).style.display = "none";
+
+                    document.getElementById(
+                        "modifier-profil-button"
+                    ).style.display = "block";
+
+                }
+            );
+
+
+        document
+            .getElementById(
+                "profil-form"
+            )
+            .addEventListener(
+                "submit",
+                modifierProfil
+            );
+
+    }
+
+
+    async function modifierProfil(event) {
+
+        event.preventDefault();
+
+
+        const message =
+            document.getElementById(
+                "profil-message"
+            );
+
+
+        const form =
+            document.getElementById(
+                "profil-form"
+            );
+
+
+        const formData =
+            new FormData(form);
+
+
+        message.textContent =
+            "Enregistrement en cours...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/profil/",
+                    {
+                        method: "PUT",
+
+                        credentials:
+                            "same-origin",
+
+                        headers: {
+                            "X-CSRFToken":
+                                obtenirCookie(
+                                    "csrftoken"
+                                )
+                        },
+
+                        body: formData
+                    }
+                );
+
+
+            if (response.status === 401 ||
+                response.status === 403) {
+
+                message.textContent =
+                    "❌ Tu dois être connecté.";
+
+                return;
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Erreur modification :",
+                    data
+                );
+
+
+                message.textContent =
+                    "❌ Impossible de modifier le profil.";
+
+                return;
+            }
+
+
+            message.textContent =
+                "✅ Profil modifié avec succès !";
+
+
+            afficherProfil(data);
+
+
+        } catch (error) {
+
+            console.error(
+                "Erreur modification profil :",
+                error
+            );
+
+
+            message.textContent =
+                "❌ Impossible de contacter le serveur.";
+
+        }
+
+    }
+
+
+    chargerProfil();
+
+</script>
+```
+
+</body>
+
+</html>
+```
+
+Ensuite :
+
+1. **Ctrl + S**
+2. Va sur `/profil/`
+3. **Ctrl + Shift + R**
+4. Tu dois d'abord voir ton profil.
+5. Clique sur **✏️ Modifier mon profil**.
+
+Le formulaire devrait alors apparaître.
+
+Après ça, on s'occupera du **CSS du nouveau profil** pour lui donner un vrai aspect de réseau social.

@@ -1,0 +1,72 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nos souvenirs</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}?v=2"
+    >
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🧡 Mur de nos souvenirs
+        </div>
+
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/publication/">Publier</a>
+            <a href="/publications/">Souvenirs</a>
+            <a href="/profil/">Profil</a>
+            <a href="/login/">Connexion</a>
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <h1>🧡 Nos souvenirs</h1>
+
+        <p>
+            Découvre les souvenirs partagés.
+        </p>
+
+
+        <section id="publications-container">
+
+            <p>
+                Chargement des souvenirs...
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 Mur de nos souvenirs
+        </p>
+
+    </footer>
+
+
+    <script
+        src="{% static 'js/publications.js' %}?v=5">
+    </script>
+
+</body>
+
+</html>

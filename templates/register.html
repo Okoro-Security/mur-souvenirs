@@ -1,0 +1,214 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Inscription - Mur de nos souvenirs</title>
+
+    <link
+        rel="stylesheet"
+        href="{% static 'css/style.css' %}"
+    >
+
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            🧡 Mur de nos souvenirs
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Accueil
+            </a>
+
+            <a href="/login/">
+                Connexion
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="container">
+
+        <section class="form-section">
+
+            <h1>
+                Créer un compte
+            </h1>
+
+            <p>
+                Rejoins notre mur de souvenirs.
+            </p>
+
+
+            <form id="register-form">
+
+                <label for="username">
+                    Nom d'utilisateur
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                >
+
+
+                <label for="first_name">
+                    Prénom
+                </label>
+
+                <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    required
+                >
+
+
+                <label for="last_name">
+                    Nom
+                </label>
+
+                <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    required
+                >
+
+
+                <label for="email">
+                    Adresse e-mail
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                >
+
+
+                <label for="niveau">
+                    Niveau
+                </label>
+
+                <select
+                    id="niveau"
+                    name="niveau"
+                    required
+                >
+
+                    <option value="">
+                        Choisir un niveau
+                    </option>
+
+                    <option value="L1">
+                        Licence 1
+                    </option>
+
+                    <option value="L2">
+                        Licence 2
+                    </option>
+
+                    <option value="L3">
+                        Licence 3
+                    </option>
+
+                </select>
+
+
+                <label for="promotion">
+                    Promotion
+                </label>
+
+                <input
+                    type="text"
+                    id="promotion"
+                    name="promotion"
+                    placeholder="Exemple : 2026"
+                    required
+                >
+
+
+                <label for="password">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                >
+
+
+                <label for="password_confirm">
+                    Confirmer le mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="password_confirm"
+                    name="password_confirm"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Créer mon compte
+                </button>
+
+            </form>
+
+
+            <p id="register-message"></p>
+
+
+            <p>
+                Tu as déjà un compte ?
+
+                <a href="/login/">
+                    Se connecter
+                </a>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 - Mur de nos souvenirs
+        </p>
+
+    </footer>
+
+
+    <script src="{% static 'js/auth.js' %}"></script>
+
+</body>
+
+</html>
