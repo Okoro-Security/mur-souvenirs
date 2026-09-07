@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 
 # =========================================================
@@ -9,7 +9,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # =========================================================
-# SÃ‰CURITÃ‰
+# SÉCURITÉ
 # =========================================================
 
 import os
@@ -22,6 +22,11 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
 ]
+
+render_host = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+
+if render_host:
+    ALLOWED_HOSTS.append(render_host)
 
 
 # =========================================================
@@ -95,7 +100,7 @@ WSGI_APPLICATION = "mur_souvenirs.wsgi.application"
 
 
 # =========================================================
-# BASE DE DONNÃ‰ES
+# BASE DE DONNÉES
 # =========================================================
 
 DATABASES = {
@@ -159,7 +164,7 @@ STATICFILES_DIRS = [
 
 
 # =========================================================
-# FICHIERS MÃ‰DIA
+# FICHIERS MÉDIA
 # =========================================================
 
 MEDIA_URL = "/media/"
@@ -201,6 +206,7 @@ REST_FRAMEWORK = {
 
 AXES_FAILURE_LIMIT = 5
 AXES_COOLOFF_TIME = 1
+
 
 
 
