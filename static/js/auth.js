@@ -1,5 +1,5 @@
-﻿// =========================================================
-// RÃ‰CUPÃ‰RER LE COOKIE CSRF
+// =========================================================
+// RÉCUPÉRER LE COOKIE CSRF
 // =========================================================
 
 function getCookie(name) {
@@ -50,7 +50,7 @@ if (loginForm) {
         if (!csrftoken) {
 
             message.textContent =
-                "Erreur de sÃ©curitÃ©. Recharge la page.";
+                "Erreur de sécurité. Recharge la page.";
 
             message.style.color = "red";
 
@@ -86,7 +86,7 @@ if (loginForm) {
             if (response.ok) {
 
                 message.textContent =
-                    "Connexion rÃ©ussie âœ…";
+                    "Connexion réussie âœ…";
 
                 message.style.color = "green";
 
@@ -169,7 +169,7 @@ if (registerForm) {
 
 
             // -------------------------------------------------
-            // VÃ©rification des mots de passe
+            // Vérification des mots de passe
             // -------------------------------------------------
 
             if (password !== passwordConfirm) {
@@ -190,7 +190,7 @@ if (registerForm) {
             if (!csrftoken) {
 
                 message.textContent =
-                    "Erreur de sÃ©curitÃ©. Recharge la page.";
+                    "Erreur de sécurité. Recharge la page.";
 
                 message.style.color = "red";
 
@@ -240,7 +240,7 @@ if (registerForm) {
                 if (response.ok) {
 
                     message.textContent =
-                        "Compte crÃ©Ã© avec succÃ¨s âœ…";
+                        "Compte créé avec succès âœ…";
 
                     message.style.color = "green";
 
